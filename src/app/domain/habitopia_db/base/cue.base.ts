@@ -47,6 +47,7 @@
  *  -- THIS FILE WILL BE OVERWRITTEN ON THE NEXT SKAFFOLDER'S CODE GENERATION --
  *
  */
+import { Habit } from '../habit';
 
 /**
  * This is the model of Cue object
@@ -55,8 +56,12 @@
 export interface CueBase {
 
     id: string;
+    latitude?: number;
+    longitude?: number;
     name: string;
     time?: Date;
     timeWindow: Date;
     type: string;
+    // Relations preceedingHabit
+    preceedingHabit: Habit | string;
 }

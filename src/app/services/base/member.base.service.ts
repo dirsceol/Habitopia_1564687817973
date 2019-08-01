@@ -81,6 +81,14 @@ import { Member } from '../../domain/habitopia_db/member';
 		},
 		//RELATIONS
 		//EXTERNAL RELATIONS
+		Member: {
+			type: Schema.ObjectId,
+			ref : "Habit"
+		},
+		member: {
+			type: Schema.ObjectId,
+			ref : "JournalEntry"
+		},
 	}
  *
  */
