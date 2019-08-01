@@ -32,11 +32,11 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: 'my-api-key',
-    authDomain: 'my-domain.firebaseapp.com',
+    apiKey: 'AIzaSyA3eNd6-KIkl3pl860n5jJnAMcj0jEYUaU',
+    authDomain: 'habitopia-15bad.firebaseapp.com',
     databaseURL: 'https://my-domain.firebaseio.com',
-    projectId: 'my-domain',
-    storageBucket: 'my-domain.appspot.com',
-    messagingSenderId: '123456789012'
+    projectId: 'habitopia-15bad',
+    storageBucket: 'habitopia-15bad.appspot.com',
+    messagingSenderId: '499084772127'
   }
 };
