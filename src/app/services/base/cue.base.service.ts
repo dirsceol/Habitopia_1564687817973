@@ -116,6 +116,77 @@ export class CueBaseService {
 
     // CRUD METHODS
 
+    /**
+    * CueService.create
+    *   @description CRUD ACTION create
+    *
+    */
+    create(item: Cue): Promise<DocumentReference> {
+        return this.cueCollection.add(item);
+    }
+
+    /**
+    * CueService.delete
+    *   @description CRUD ACTION delete
+    *   @param ObjectId id Id
+    *
+    */
+    remove(id: string) {
+        const itemDoc: AngularFirestoreDocument<any> = this.cueCollection.doc(id);
+        itemDoc.delete();
+    }
+
+    /**
+    * CueService.findBypreceedingHabit
+    *   @description CRUD ACTION findBypreceedingHabit
+    *   @param Objectid key Id della risorsa preceedingHabit da cercare
+    *
+    */
+    findByPreceedingHabit(id: string): Observable<any[]> {
+        return this.afs.collection('cue', ref => ref.where('preceedingHabit', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Cue;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * CueService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id 
+    *
+    */
+    get(id: string): AngularFirestoreDocument<Cue> {
+        return this.afs.doc<Cue>('cue/' + id);
+    }
+
+    /**
+    * CueService.list
+    *   @description CRUD ACTION list
+    *
+    */
+    list(): Observable<Cue[]> {
+        return this.afs.collection('cue').snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Cue;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * CueService.update
+    *   @description CRUD ACTION update
+    *   @param ObjectId id Id
+    *
+    */
+    update(itemDoc: AngularFirestoreDocument<Cue>, item: Cue): Promise<void> {
+        return itemDoc.update(item);
+    }
+
 
     // Custom APIs
 

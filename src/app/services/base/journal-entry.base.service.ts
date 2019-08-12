@@ -133,6 +133,109 @@ export class JournalEntryBaseService {
 
     // CRUD METHODS
 
+    /**
+    * JournalEntryService.create
+    *   @description CRUD ACTION create
+    *
+    */
+    create(item: JournalEntry): Promise<DocumentReference> {
+        return this.journalentryCollection.add(item);
+    }
+
+    /**
+    * JournalEntryService.delete
+    *   @description CRUD ACTION delete
+    *   @param ObjectId id Id
+    *
+    */
+    remove(id: string) {
+        const itemDoc: AngularFirestoreDocument<any> = this.journalentryCollection.doc(id);
+        itemDoc.delete();
+    }
+
+    /**
+    * JournalEntryService.findByaction
+    *   @description CRUD ACTION findByaction
+    *   @param Objectid key Id della risorsa action da cercare
+    *
+    */
+    findByAction(id: string): Observable<any[]> {
+        return this.afs.collection('journalentry', ref => ref.where('action', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as JournalEntry;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * JournalEntryService.findBymember
+    *   @description CRUD ACTION findBymember
+    *   @param Objectid key Id della risorsa member da cercare
+    *
+    */
+    findByMember(id: string): Observable<any[]> {
+        return this.afs.collection('journalentry', ref => ref.where('member', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as JournalEntry;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * JournalEntryService.findBymemberTarger
+    *   @description CRUD ACTION findBymemberTarger
+    *   @param Objectid key Id della risorsa memberTarger da cercare
+    *
+    */
+    findByMemberTarger(id: string): Observable<any[]> {
+        return this.afs.collection('journalentry', ref => ref.where('memberTarger', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as JournalEntry;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * JournalEntryService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id 
+    *
+    */
+    get(id: string): AngularFirestoreDocument<JournalEntry> {
+        return this.afs.doc<JournalEntry>('journalentry/' + id);
+    }
+
+    /**
+    * JournalEntryService.list
+    *   @description CRUD ACTION list
+    *
+    */
+    list(): Observable<JournalEntry[]> {
+        return this.afs.collection('journalentry').snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as JournalEntry;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * JournalEntryService.update
+    *   @description CRUD ACTION update
+    *   @param ObjectId id Id
+    *
+    */
+    update(itemDoc: AngularFirestoreDocument<JournalEntry>, item: JournalEntry): Promise<void> {
+        return itemDoc.update(item);
+    }
+
 
     // Custom APIs
 

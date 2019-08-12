@@ -117,6 +117,109 @@ export class InterpretationBaseService {
 
     // CRUD METHODS
 
+    /**
+    * InterpretationService.create
+    *   @description CRUD ACTION create
+    *
+    */
+    create(item: Interpretation): Promise<DocumentReference> {
+        return this.interpretationCollection.add(item);
+    }
+
+    /**
+    * InterpretationService.delete
+    *   @description CRUD ACTION delete
+    *   @param ObjectId id Id
+    *
+    */
+    remove(id: string) {
+        const itemDoc: AngularFirestoreDocument<any> = this.interpretationCollection.doc(id);
+        itemDoc.delete();
+    }
+
+    /**
+    * InterpretationService.findByaction
+    *   @description CRUD ACTION findByaction
+    *   @param Objectid key Id della risorsa action da cercare
+    *
+    */
+    findByAction(id: string): Observable<any[]> {
+        return this.afs.collection('interpretation', ref => ref.where('action', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Interpretation;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * InterpretationService.findByentry
+    *   @description CRUD ACTION findByentry
+    *   @param Objectid key Id della risorsa entry da cercare
+    *
+    */
+    findByEntry(id: string): Observable<any[]> {
+        return this.afs.collection('interpretation', ref => ref.where('entry', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Interpretation;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * InterpretationService.findBymember
+    *   @description CRUD ACTION findBymember
+    *   @param Objectid key Id della risorsa member da cercare
+    *
+    */
+    findByMember(id: string): Observable<any[]> {
+        return this.afs.collection('interpretation', ref => ref.where('member', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Interpretation;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * InterpretationService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id 
+    *
+    */
+    get(id: string): AngularFirestoreDocument<Interpretation> {
+        return this.afs.doc<Interpretation>('interpretation/' + id);
+    }
+
+    /**
+    * InterpretationService.list
+    *   @description CRUD ACTION list
+    *
+    */
+    list(): Observable<Interpretation[]> {
+        return this.afs.collection('interpretation').snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Interpretation;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * InterpretationService.update
+    *   @description CRUD ACTION update
+    *   @param ObjectId id Id
+    *
+    */
+    update(itemDoc: AngularFirestoreDocument<Interpretation>, item: Interpretation): Promise<void> {
+        return itemDoc.update(item);
+    }
+
 
     // Custom APIs
 
