@@ -129,6 +129,61 @@ export class MemberBaseService {
 
     // CRUD METHODS
 
+    /**
+    * MemberService.create
+    *   @description CRUD ACTION create
+    *
+    */
+    create(item: Member): Promise<DocumentReference> {
+        return this.memberCollection.add(item);
+    }
+
+    /**
+    * MemberService.delete
+    *   @description CRUD ACTION delete
+    *   @param ObjectId id Id
+    *
+    */
+    remove(id: string) {
+        const itemDoc: AngularFirestoreDocument<any> = this.memberCollection.doc(id);
+        itemDoc.delete();
+    }
+
+    /**
+    * MemberService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id 
+    *
+    */
+    get(id: string): AngularFirestoreDocument<Member> {
+        return this.afs.doc<Member>('member/' + id);
+    }
+
+    /**
+    * MemberService.list
+    *   @description CRUD ACTION list
+    *
+    */
+    list(): Observable<Member[]> {
+        return this.afs.collection('member').snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Member;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * MemberService.update
+    *   @description CRUD ACTION update
+    *   @param ObjectId id Id
+    *
+    */
+    update(itemDoc: AngularFirestoreDocument<Member>, item: Member): Promise<void> {
+        return itemDoc.update(item);
+    }
+
 
     // Custom APIs
 

@@ -117,6 +117,61 @@ export class ActionBaseService {
 
     // CRUD METHODS
 
+    /**
+    * ActionService.create
+    *   @description CRUD ACTION create
+    *
+    */
+    create(item: Action): Promise<DocumentReference> {
+        return this.actionCollection.add(item);
+    }
+
+    /**
+    * ActionService.delete
+    *   @description CRUD ACTION delete
+    *   @param ObjectId id Id
+    *
+    */
+    remove(id: string) {
+        const itemDoc: AngularFirestoreDocument<any> = this.actionCollection.doc(id);
+        itemDoc.delete();
+    }
+
+    /**
+    * ActionService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id 
+    *
+    */
+    get(id: string): AngularFirestoreDocument<Action> {
+        return this.afs.doc<Action>('action/' + id);
+    }
+
+    /**
+    * ActionService.list
+    *   @description CRUD ACTION list
+    *
+    */
+    list(): Observable<Action[]> {
+        return this.afs.collection('action').snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Action;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * ActionService.update
+    *   @description CRUD ACTION update
+    *   @param ObjectId id Id
+    *
+    */
+    update(itemDoc: AngularFirestoreDocument<Action>, item: Action): Promise<void> {
+        return itemDoc.update(item);
+    }
+
 
     // Custom APIs
 

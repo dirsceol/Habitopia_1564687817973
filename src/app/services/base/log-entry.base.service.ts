@@ -114,6 +114,141 @@ export class LogEntryBaseService {
 
     // CRUD METHODS
 
+    /**
+    * LogEntryService.create
+    *   @description CRUD ACTION create
+    *
+    */
+    create(item: LogEntry): Promise<DocumentReference> {
+        return this.logentryCollection.add(item);
+    }
+
+    /**
+    * LogEntryService.delete
+    *   @description CRUD ACTION delete
+    *   @param ObjectId id Id
+    *
+    */
+    remove(id: string) {
+        const itemDoc: AngularFirestoreDocument<any> = this.logentryCollection.doc(id);
+        itemDoc.delete();
+    }
+
+    /**
+    * LogEntryService.findBycomment
+    *   @description CRUD ACTION findBycomment
+    *   @param Objectid key Id della risorsa comment da cercare
+    *
+    */
+    findByComment(id: string): Observable<any[]> {
+        return this.afs.collection('logentry', ref => ref.where('comment', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as LogEntry;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * LogEntryService.findByevaluation
+    *   @description CRUD ACTION findByevaluation
+    *   @param Objectid key Id della risorsa evaluation da cercare
+    *
+    */
+    findByEvaluation(id: string): Observable<any[]> {
+        return this.afs.collection('logentry', ref => ref.where('evaluation', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as LogEntry;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * LogEntryService.findByhabit
+    *   @description CRUD ACTION findByhabit
+    *   @param Objectid key Id della risorsa habit da cercare
+    *
+    */
+    findByHabit(id: string): Observable<any[]> {
+        return this.afs.collection('logentry', ref => ref.where('habit', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as LogEntry;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * LogEntryService.findByinterpretation
+    *   @description CRUD ACTION findByinterpretation
+    *   @param Objectid key Id della risorsa interpretation da cercare
+    *
+    */
+    findByInterpretation(id: string): Observable<any[]> {
+        return this.afs.collection('logentry', ref => ref.where('interpretation', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as LogEntry;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * LogEntryService.findByjournalEntry
+    *   @description CRUD ACTION findByjournalEntry
+    *   @param Objectid key Id della risorsa journalEntry da cercare
+    *
+    */
+    findByJournalEntry(id: string): Observable<any[]> {
+        return this.afs.collection('logentry', ref => ref.where('journalEntry', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as LogEntry;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * LogEntryService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id 
+    *
+    */
+    get(id: string): AngularFirestoreDocument<LogEntry> {
+        return this.afs.doc<LogEntry>('logentry/' + id);
+    }
+
+    /**
+    * LogEntryService.list
+    *   @description CRUD ACTION list
+    *
+    */
+    list(): Observable<LogEntry[]> {
+        return this.afs.collection('logentry').snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as LogEntry;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * LogEntryService.update
+    *   @description CRUD ACTION update
+    *   @param ObjectId id Id
+    *
+    */
+    update(itemDoc: AngularFirestoreDocument<LogEntry>, item: LogEntry): Promise<void> {
+        return itemDoc.update(item);
+    }
+
 
     // Custom APIs
 

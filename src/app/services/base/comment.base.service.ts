@@ -109,6 +109,77 @@ export class CommentBaseService {
 
     // CRUD METHODS
 
+    /**
+    * CommentService.create
+    *   @description CRUD ACTION create
+    *
+    */
+    create(item: Comment): Promise<DocumentReference> {
+        return this.commentCollection.add(item);
+    }
+
+    /**
+    * CommentService.delete
+    *   @description CRUD ACTION delete
+    *   @param ObjectId id Id
+    *
+    */
+    remove(id: string) {
+        const itemDoc: AngularFirestoreDocument<any> = this.commentCollection.doc(id);
+        itemDoc.delete();
+    }
+
+    /**
+    * CommentService.findBymember
+    *   @description CRUD ACTION findBymember
+    *   @param Objectid key Id della risorsa member da cercare
+    *
+    */
+    findByMember(id: string): Observable<any[]> {
+        return this.afs.collection('comment', ref => ref.where('member', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Comment;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * CommentService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id 
+    *
+    */
+    get(id: string): AngularFirestoreDocument<Comment> {
+        return this.afs.doc<Comment>('comment/' + id);
+    }
+
+    /**
+    * CommentService.list
+    *   @description CRUD ACTION list
+    *
+    */
+    list(): Observable<Comment[]> {
+        return this.afs.collection('comment').snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Comment;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * CommentService.update
+    *   @description CRUD ACTION update
+    *   @param ObjectId id Id
+    *
+    */
+    update(itemDoc: AngularFirestoreDocument<Comment>, item: Comment): Promise<void> {
+        return itemDoc.update(item);
+    }
+
 
     // Custom APIs
 

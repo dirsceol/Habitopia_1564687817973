@@ -114,6 +114,125 @@ export class HabitBaseService {
 
     // CRUD METHODS
 
+    /**
+    * HabitService.create
+    *   @description CRUD ACTION create
+    *
+    */
+    create(item: Habit): Promise<DocumentReference> {
+        return this.habitCollection.add(item);
+    }
+
+    /**
+    * HabitService.delete
+    *   @description CRUD ACTION delete
+    *   @param ObjectId id Id
+    *
+    */
+    remove(id: string) {
+        const itemDoc: AngularFirestoreDocument<any> = this.habitCollection.doc(id);
+        itemDoc.delete();
+    }
+
+    /**
+    * HabitService.findByaction
+    *   @description CRUD ACTION findByaction
+    *   @param Objectid key Id della risorsa action da cercare
+    *
+    */
+    findByAction(id: string): Observable<any[]> {
+        return this.afs.collection('habit', ref => ref.where('action', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Habit;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * HabitService.findBycue
+    *   @description CRUD ACTION findBycue
+    *   @param Objectid key Id della risorsa cue da cercare
+    *
+    */
+    findByCue(id: string): Observable<any[]> {
+        return this.afs.collection('habit', ref => ref.where('cue', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Habit;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * HabitService.findBymember
+    *   @description CRUD ACTION findBymember
+    *   @param Objectid key Id della risorsa member da cercare
+    *
+    */
+    findByMember(id: string): Observable<any[]> {
+        return this.afs.collection('habit', ref => ref.where('member', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Habit;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * HabitService.findByrewards
+    *   @description CRUD ACTION findByrewards
+    *   @param Objectid key Id della risorsa rewards da cercare
+    *
+    */
+    findByRewards(id: string): Observable<any[]> {
+        return this.afs.collection('habit', ref => ref.where('rewards', 'array-contains', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Habit;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * HabitService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id 
+    *
+    */
+    get(id: string): AngularFirestoreDocument<Habit> {
+        return this.afs.doc<Habit>('habit/' + id);
+    }
+
+    /**
+    * HabitService.list
+    *   @description CRUD ACTION list
+    *
+    */
+    list(): Observable<Habit[]> {
+        return this.afs.collection('habit').snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Habit;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * HabitService.update
+    *   @description CRUD ACTION update
+    *   @param ObjectId id Id
+    *
+    */
+    update(itemDoc: AngularFirestoreDocument<Habit>, item: Habit): Promise<void> {
+        return itemDoc.update(item);
+    }
+
 
     // Custom APIs
 

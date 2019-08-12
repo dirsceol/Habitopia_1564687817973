@@ -109,6 +109,93 @@ export class EvaluationBaseService {
 
     // CRUD METHODS
 
+    /**
+    * EvaluationService.create
+    *   @description CRUD ACTION create
+    *
+    */
+    create(item: Evaluation): Promise<DocumentReference> {
+        return this.evaluationCollection.add(item);
+    }
+
+    /**
+    * EvaluationService.delete
+    *   @description CRUD ACTION delete
+    *   @param ObjectId id Id
+    *
+    */
+    remove(id: string) {
+        const itemDoc: AngularFirestoreDocument<any> = this.evaluationCollection.doc(id);
+        itemDoc.delete();
+    }
+
+    /**
+    * EvaluationService.findByaction
+    *   @description CRUD ACTION findByaction
+    *   @param Objectid key Id della risorsa action da cercare
+    *
+    */
+    findByAction(id: string): Observable<any[]> {
+        return this.afs.collection('evaluation', ref => ref.where('action', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Evaluation;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * EvaluationService.findBymember
+    *   @description CRUD ACTION findBymember
+    *   @param Objectid key Id della risorsa member da cercare
+    *
+    */
+    findByMember(id: string): Observable<any[]> {
+        return this.afs.collection('evaluation', ref => ref.where('member', '==', id)).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Evaluation;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * EvaluationService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id 
+    *
+    */
+    get(id: string): AngularFirestoreDocument<Evaluation> {
+        return this.afs.doc<Evaluation>('evaluation/' + id);
+    }
+
+    /**
+    * EvaluationService.list
+    *   @description CRUD ACTION list
+    *
+    */
+    list(): Observable<Evaluation[]> {
+        return this.afs.collection('evaluation').snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Evaluation;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * EvaluationService.update
+    *   @description CRUD ACTION update
+    *   @param ObjectId id Id
+    *
+    */
+    update(itemDoc: AngularFirestoreDocument<Evaluation>, item: Evaluation): Promise<void> {
+        return itemDoc.update(item);
+    }
+
 
     // Custom APIs
 

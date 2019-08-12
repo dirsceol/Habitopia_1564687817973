@@ -44,7 +44,27 @@ const routes: Routes = [
 
     /* START MY VIEWS */
 
+    { path: 'actions/:id', loadChildren: './pages/action-edit/action-edit.module#ActionEditModule', canActivate: [AuthGuard] },
+    { path: 'actions', loadChildren: './pages/action-list/action-list.module#ActionListModule', canActivate: [AuthGuard] },
+    { path: 'comments/:id', loadChildren: './pages/comment-edit/comment-edit.module#CommentEditModule', canActivate: [AuthGuard] },
+    { path: 'comments', loadChildren: './pages/comment-list/comment-list.module#CommentListModule', canActivate: [AuthGuard] },
+    { path: 'cues/:id', loadChildren: './pages/cue-edit/cue-edit.module#CueEditModule', canActivate: [AuthGuard] },
+    { path: 'cues', loadChildren: './pages/cue-list/cue-list.module#CueListModule', canActivate: [AuthGuard] },
+    { path: 'evaluations/:id', loadChildren: './pages/evaluation-edit/evaluation-edit.module#EvaluationEditModule', canActivate: [AuthGuard] },
+    { path: 'evaluations', loadChildren: './pages/evaluation-list/evaluation-list.module#EvaluationListModule', canActivate: [AuthGuard] },
+    { path: 'habits/:id', loadChildren: './pages/habit-edit/habit-edit.module#HabitEditModule', canActivate: [AuthGuard] },
+    { path: 'habits', loadChildren: './pages/habit-list/habit-list.module#HabitListModule', canActivate: [AuthGuard] },
     { path: 'home', loadChildren: './pages/home/home.module#HomeModule', canActivate: [AuthGuard] },
+    { path: 'interpretations/:id', loadChildren: './pages/interpretation-edit/interpretation-edit.module#InterpretationEditModule', canActivate: [AuthGuard] },
+    { path: 'interpretations', loadChildren: './pages/interpretation-list/interpretation-list.module#InterpretationListModule', canActivate: [AuthGuard] },
+    { path: 'journalentrys/:id', loadChildren: './pages/journal-entry-edit/journal-entry-edit.module#JournalEntryEditModule', canActivate: [AuthGuard] },
+    { path: 'journalentrys', loadChildren: './pages/journal-entry-list/journal-entry-list.module#JournalEntryListModule', canActivate: [AuthGuard] },
+    { path: 'logentrys/:id', loadChildren: './pages/log-entry-edit/log-entry-edit.module#LogEntryEditModule', canActivate: [AuthGuard] },
+    { path: 'logentrys', loadChildren: './pages/log-entry-list/log-entry-list.module#LogEntryListModule', canActivate: [AuthGuard] },
+    { path: 'members/:id', loadChildren: './pages/member-edit/member-edit.module#MemberEditModule', canActivate: [AuthGuard] },
+    { path: 'members', loadChildren: './pages/member-list/member-list.module#MemberListModule', canActivate: [AuthGuard] },
+    { path: 'rewards/:id', loadChildren: './pages/reward-edit/reward-edit.module#RewardEditModule', canActivate: [AuthGuard] },
+    { path: 'rewards', loadChildren: './pages/reward-list/reward-list.module#RewardListModule', canActivate: [AuthGuard] },
 
  /* END MY VIEWS */
 

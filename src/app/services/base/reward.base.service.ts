@@ -113,6 +113,61 @@ export class RewardBaseService {
 
     // CRUD METHODS
 
+    /**
+    * RewardService.create
+    *   @description CRUD ACTION create
+    *
+    */
+    create(item: Reward): Promise<DocumentReference> {
+        return this.rewardCollection.add(item);
+    }
+
+    /**
+    * RewardService.delete
+    *   @description CRUD ACTION delete
+    *   @param ObjectId id Id
+    *
+    */
+    remove(id: string) {
+        const itemDoc: AngularFirestoreDocument<any> = this.rewardCollection.doc(id);
+        itemDoc.delete();
+    }
+
+    /**
+    * RewardService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id 
+    *
+    */
+    get(id: string): AngularFirestoreDocument<Reward> {
+        return this.afs.doc<Reward>('reward/' + id);
+    }
+
+    /**
+    * RewardService.list
+    *   @description CRUD ACTION list
+    *
+    */
+    list(): Observable<Reward[]> {
+        return this.afs.collection('reward').snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Reward;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+    }
+
+    /**
+    * RewardService.update
+    *   @description CRUD ACTION update
+    *   @param ObjectId id Id
+    *
+    */
+    update(itemDoc: AngularFirestoreDocument<Reward>, item: Reward): Promise<void> {
+        return itemDoc.update(item);
+    }
+
 
     // Custom APIs
 
