@@ -49,7 +49,6 @@
  */
 import { Action } from '../action';
 import { Member } from '../member';
-import { Member } from '../member';
 
 /**
  * This is the model of JournalEntry object
