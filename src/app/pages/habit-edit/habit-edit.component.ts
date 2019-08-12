@@ -46,7 +46,6 @@ import { RewardService } from '../../services/reward.service';
 
 import { Habit } from '../../domain/habitopia_db/habit';
 import { Action } from '../../domain/habitopia_db/action';
-import { Cue } from '../../domain/habitopia_db/cue';
 import { LogEntry } from '../../domain/habitopia_db/log-entry';
 import { Member } from '../../domain/habitopia_db/member';
 import { Cue } from '../../domain/habitopia_db/cue';

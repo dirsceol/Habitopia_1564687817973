@@ -44,7 +44,6 @@ import { MemberService } from '../../services/member.service';
 import { Comment } from '../../domain/habitopia_db/comment';
 import { LogEntry } from '../../domain/habitopia_db/log-entry';
 import { Member } from '../../domain/habitopia_db/member';
-import { Comment } from '../../domain/habitopia_db/comment';
 
 // START - USED SERVICES
 /**

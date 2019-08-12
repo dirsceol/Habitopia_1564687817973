@@ -96,9 +96,6 @@ export class ActionEditComponent implements OnInit {
     formValid: Boolean;
 
     listAction: Action[];
-    listAction: Action[];
-    listAction: Action[];
-    listAction: Action[];
 
     externalInterpretation: Interpretation[];
     externalEvaluation: Evaluation[];

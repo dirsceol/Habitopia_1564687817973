@@ -42,7 +42,6 @@ import { HabitService } from '../../services/habit.service';
 
 import { Cue } from '../../domain/habitopia_db/cue';
 import { Habit } from '../../domain/habitopia_db/habit';
-import { Habit } from '../../domain/habitopia_db/habit';
 
 // START - USED SERVICES
 /**

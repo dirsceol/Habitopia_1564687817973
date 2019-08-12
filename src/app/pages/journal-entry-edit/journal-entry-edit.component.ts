@@ -48,7 +48,6 @@ import { Action } from '../../domain/habitopia_db/action';
 import { Interpretation } from '../../domain/habitopia_db/interpretation';
 import { LogEntry } from '../../domain/habitopia_db/log-entry';
 import { Member } from '../../domain/habitopia_db/member';
-import { Member } from '../../domain/habitopia_db/member';
 
 // START - USED SERVICES
 /**

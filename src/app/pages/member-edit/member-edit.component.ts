@@ -50,7 +50,6 @@ import { JournalEntry } from '../../domain/habitopia_db/journal-entry';
 import { Evaluation } from '../../domain/habitopia_db/evaluation';
 import { Interpretation } from '../../domain/habitopia_db/interpretation';
 import { Comment } from '../../domain/habitopia_db/comment';
-import { JournalEntry } from '../../domain/habitopia_db/journal-entry';
 
 // START - USED SERVICES
 /**
@@ -107,10 +106,6 @@ export class MemberEditComponent implements OnInit {
     formValid: Boolean;
 
     listMember: Member[];
-    listMember: Member[];
-    listMember: Member[];
-    listMember: Member[];
-    listMember: Member[];
     listMemberTarger: Member[];
 
     externalHabit: Habit[];
@@ -118,7 +113,6 @@ export class MemberEditComponent implements OnInit {
     externalEvaluation: Evaluation[];
     externalInterpretation: Interpretation[];
     externalComment: Comment[];
-    externalJournalEntry: JournalEntry[];
 
     constructor(
         private memberService: MemberService,
