@@ -58,13 +58,12 @@ import { Member } from '../member';
 export interface HabitBase {
 
     id: string;
-    Name: string;
-    // Relations Action
-    Action: Action | string;
-    // Relations Cue
-    Cue: Cue | string;
-    // Relations Member
-    Member: Member | string;
-    // Relations m:m Rewards
-    Rewards: string[];
-}
+    name: string;
+    // Relations action
+    action: Action | string;
+    // Relations cue
+    cue: Cue | string;
+    // Relations member
+    member: Member | string;
+    // Relations m:m rewards
+    rewards: string[]}

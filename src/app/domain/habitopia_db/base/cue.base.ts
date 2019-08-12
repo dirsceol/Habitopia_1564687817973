@@ -56,11 +56,11 @@ import { Habit } from '../habit';
 export interface CueBase {
 
     id: string;
+    endTime: Date;
     latitude?: number;
     longitude?: number;
     name: string;
-    time?: Date;
-    timeWindow: Date;
+    startTime?: Date;
     type: string;
     // Relations preceedingHabit
     preceedingHabit: Habit | string;

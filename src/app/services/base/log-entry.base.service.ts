@@ -77,13 +77,24 @@ import { LogEntry } from '../../domain/habitopia_db/log-entry';
 		},
 		//RELATIONS
 		//EXTERNAL RELATIONS
+		comment: {
+			type: Schema.ObjectId,
+			ref : "LogEntry"
+		},
+		evaluation: {
+			type: Schema.ObjectId,
+			ref : "LogEntry"
+		},
 		habit: {
+			type: Schema.ObjectId,
+			ref : "LogEntry"
+		},
+		interpretation: {
 			type: Schema.ObjectId,
 			ref : "LogEntry"
 		},
 		journalEntry: {
 			type: Schema.ObjectId,
-			required : true,
 			ref : "LogEntry"
 		},
 	}

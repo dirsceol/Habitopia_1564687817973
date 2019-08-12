@@ -92,7 +92,7 @@ import { Reward } from '../../domain/habitopia_db/reward';
 		},
 		//RELATIONS
 		//EXTERNAL RELATIONS
-		Rewards: [{
+		rewards: [{
 			type: Schema.ObjectId,
 			ref : "Habit"
 		}],

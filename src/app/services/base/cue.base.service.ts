@@ -67,6 +67,10 @@ import { Cue } from '../../domain/habitopia_db/cue';
  * SCHEMA DB Cue
  *
 	{
+		endTime: {
+			type: 'Date',
+			required : true
+		},
 		latitude: {
 			type: 'Decimal'
 		},
@@ -77,12 +81,8 @@ import { Cue } from '../../domain/habitopia_db/cue';
 			type: 'String',
 			required : true
 		},
-		time: {
+		startTime: {
 			type: 'Date'
-		},
-		timeWindow: {
-			type: 'Date',
-			required : true
 		},
 		type: {
 			type: 'String',
@@ -91,7 +91,7 @@ import { Cue } from '../../domain/habitopia_db/cue';
 		},
 		//RELATIONS
 		//EXTERNAL RELATIONS
-		Cue: {
+		cue: {
 			type: Schema.ObjectId,
 			ref : "Habit"
 		},

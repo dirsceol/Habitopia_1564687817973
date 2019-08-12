@@ -47,6 +47,8 @@
  *  -- THIS FILE WILL BE OVERWRITTEN ON THE NEXT SKAFFOLDER'S CODE GENERATION --
  *
  */
+import { Action } from '../action';
+import { Member } from '../member';
 import { Member } from '../member';
 
 /**
@@ -56,9 +58,18 @@ import { Member } from '../member';
 export interface JournalEntryBase {
 
     id: string;
-    content: string;
     date: Date;
+    journalNotes: string;
+    latitude?: number;
+    longitude?: number;
+    share?: Boolean;
+    simpleReadableSummary?: string;
     title: string;
+    votes?: string;
+    // Relations action
+    action: Action | string;
     // Relations member
     member: Member | string;
+    // Relations memberTarger
+    memberTarger: Member | string;
 }

@@ -67,36 +67,36 @@ import { Habit } from '../../domain/habitopia_db/habit';
  * SCHEMA DB Habit
  *
 	{
-		Name: {
+		name: {
 			type: 'String',
 			required : true
 		},
 		//RELATIONS
 		//EXTERNAL RELATIONS
-		Action: {
+		action: {
 			type: Schema.ObjectId,
 			ref : "Habit"
 		},
-		Cue: {
+		cue: {
 			type: Schema.ObjectId,
 			ref : "Habit"
 		},
-		Member: {
-			type: Schema.ObjectId,
-			ref : "Habit"
-		},
-		Rewards: [{
-			type: Schema.ObjectId,
-			ref : "Habit"
-		}],
 		habit: {
 			type: Schema.ObjectId,
 			ref : "LogEntry"
+		},
+		member: {
+			type: Schema.ObjectId,
+			ref : "Habit"
 		},
 		preceedingHabit: {
 			type: Schema.ObjectId,
 			ref : "Cue"
 		},
+		rewards: [{
+			type: Schema.ObjectId,
+			ref : "Habit"
+		}],
 	}
  *
  */

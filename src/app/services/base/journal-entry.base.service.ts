@@ -67,26 +67,52 @@ import { JournalEntry } from '../../domain/habitopia_db/journal-entry';
  * SCHEMA DB JournalEntry
  *
 	{
-		content: {
-			type: 'String',
-			required : true
-		},
 		date: {
 			type: 'Date',
 			required : true
+		},
+		journalNotes: {
+			type: 'String',
+			required : true
+		},
+		latitude: {
+			type: 'Decimal'
+		},
+		longitude: {
+			type: 'Decimal'
+		},
+		share: {
+			type: 'Boolean'
+		},
+		simpleReadableSummary: {
+			type: 'String'
 		},
 		title: {
 			type: 'String',
 			required : true
 		},
+		votes: {
+			type: 'Custom'
+		},
 		//RELATIONS
 		//EXTERNAL RELATIONS
+		action: {
+			type: Schema.ObjectId,
+			ref : "JournalEntry"
+		},
+		entry: {
+			type: Schema.ObjectId,
+			ref : "Interpretation"
+		},
 		journalEntry: {
 			type: Schema.ObjectId,
-			required : true,
 			ref : "LogEntry"
 		},
 		member: {
+			type: Schema.ObjectId,
+			ref : "JournalEntry"
+		},
+		memberTarger: {
 			type: Schema.ObjectId,
 			ref : "JournalEntry"
 		},

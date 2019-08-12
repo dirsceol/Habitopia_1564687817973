@@ -34,8 +34,11 @@ import { NgModule } from '@angular/core';
 /* START MY SERVICES IMPORTS */
 // Do not edit this comment content, it will be overwritten in next Skaffolder generation
 import { ActionService } from './services/action.service';
+import { CommentService } from './services/comment.service';
 import { CueService } from './services/cue.service';
+import { EvaluationService } from './services/evaluation.service';
 import { HabitService } from './services/habit.service';
+import { InterpretationService } from './services/interpretation.service';
 import { JournalEntryService } from './services/journal-entry.service';
 import { LogEntryService } from './services/log-entry.service';
 import { MemberService } from './services/member.service';
@@ -52,8 +55,11 @@ import { AuthenticationService } from './security/authentication.service';
     /* START PROVIDERS */
 // Do not edit this comment content, it will be overwritten in next Skaffolder generation
     ActionService,
+    CommentService,
     CueService,
+    EvaluationService,
     HabitService,
+    InterpretationService,
     JournalEntryService,
     LogEntryService,
     MemberService,

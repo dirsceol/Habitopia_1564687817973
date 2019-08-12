@@ -79,13 +79,36 @@ import { Member } from '../../domain/habitopia_db/member';
 			type: 'String',
 			enum : ["ADMIN", "EDITOR"]
 		},
+		trustSteps: {
+			type: 'Integer',
+			required : true
+		},
+		trusts: {
+			type: 'Custom'
+		},
 		//RELATIONS
 		//EXTERNAL RELATIONS
-		Member: {
+		member: {
 			type: Schema.ObjectId,
 			ref : "Habit"
 		},
 		member: {
+			type: Schema.ObjectId,
+			ref : "JournalEntry"
+		},
+		member: {
+			type: Schema.ObjectId,
+			ref : "Evaluation"
+		},
+		member: {
+			type: Schema.ObjectId,
+			ref : "Interpretation"
+		},
+		member: {
+			type: Schema.ObjectId,
+			ref : "Comment"
+		},
+		memberTarger: {
 			type: Schema.ObjectId,
 			ref : "JournalEntry"
 		},
