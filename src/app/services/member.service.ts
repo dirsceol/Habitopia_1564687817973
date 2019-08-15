@@ -31,6 +31,10 @@
 */
 // BASE SERVICE
 import { MemberBaseService } from './base/member.base.service';
+import { User } from 'firebase';
+import { Member } from '../domain/habitopia_db/member';
+
+
 
 
 // start documentation
@@ -45,4 +49,17 @@ import { MemberBaseService } from './base/member.base.service';
  */
 export class MemberService extends MemberBaseService {
 
+
+    ensureMember(user: User) {
+        this.get(user.uid).valueChanges().subscribe( member => {
+            if (!member) {
+                this.afs.collection<Member>('member').doc(user.uid).set({
+                    id: user.uid,
+                    displayName: user.displayName,
+                    email: user.email,
+                    trustSteps: 1
+                });
+            }
+        });
+    }
 }

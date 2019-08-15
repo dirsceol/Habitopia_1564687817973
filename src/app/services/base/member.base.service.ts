@@ -118,9 +118,9 @@ import { Member } from '../../domain/habitopia_db/member';
 @Injectable()
 export class MemberBaseService {
 
-    private memberCollection: AngularFirestoreCollection<Member>;
+    public memberCollection: AngularFirestoreCollection<Member>;
     constructor(
-        private afs: AngularFirestore,
+        public afs: AngularFirestore,
         private fns: AngularFireFunctions
     ) {
         this.memberCollection = afs.collection<Member>('member');

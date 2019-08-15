@@ -33,6 +33,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/security/authentication.service';
 import { User } from 'firebase';
+import { MemberService } from '../services/member.service';
 
 /**
  * This component manage the NavBar
@@ -46,9 +47,18 @@ import { User } from 'firebase';
 export class NavbarComponent implements OnInit {
 
     user: User;
-    constructor(public authenticationService: AuthenticationService) { }
+    constructor(
+        public authenticationService: AuthenticationService,
+        public memberService: MemberService
+        ) { }
 
     ngOnInit() {
-        this.authenticationService.getUser().subscribe(user => this.user = user, err => this.user = null);
+        this.authenticationService.getUser().subscribe(
+            user => {
+                this.user = user;
+                this.memberService.ensureMember(user);
+
+            }, 
+            err => this.user = null);
     }
 }
